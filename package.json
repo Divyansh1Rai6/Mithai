@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "^16.13.0"
-  },
+  "node": "18.x"
+},
   "scripts": {
     "dev": "(npx kill-port 3000) && next dev -p 3000",
     "build": "next build",
