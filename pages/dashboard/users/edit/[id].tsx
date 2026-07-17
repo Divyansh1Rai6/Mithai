@@ -36,8 +36,12 @@ export const getServerSideProps: GetServerSideProps = async ({
     }
     return { props: { user: user } };
   } catch (error) {
+    // Backend/API not available in this deployment.
+    // Render with an empty user instead of throwing a 404.
     return {
-      notFound: true,
+      props: {
+        user: {} as User,
+      },
     };
   }
 };

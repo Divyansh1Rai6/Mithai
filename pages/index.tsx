@@ -164,8 +164,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     return { props: { response } };
   } catch (error) {
+    // Backend/API not available in this deployment (no env vars configured).
+    // Render the page with empty data instead of throwing a 404,
+    // so the site stays visible/deployable without a live backend.
+    console.log("Home getServerSideProps error:", error);
     return {
-      notFound: true,
+      props: {
+        response: {
+          productsItems: [],
+          bannerFiles: [],
+          categories: [],
+          homeBanner: [],
+        },
+      },
     };
   }
 };

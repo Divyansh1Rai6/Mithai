@@ -198,9 +198,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     return { props: { productBanner } };
   } catch (error) {
-    return {
-      notFound: true,
-    };
+    // Backend/API not available in this deployment.
+    // Render with an empty banner instead of throwing a 404.
+    return { props: { productBanner: [] } };
   }
 };
 

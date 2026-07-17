@@ -89,8 +89,14 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
     return { props: { productsItems, category } };
   } catch (error) {
+    // Backend/API not available in this deployment.
+    // Render with an empty product list instead of throwing a 404.
+    const { category } = query;
     return {
-      notFound: true,
+      props: {
+        productsItems: [],
+        category: (category as string) || "products",
+      },
     };
   }
 };
